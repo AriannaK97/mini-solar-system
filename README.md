@@ -21,4 +21,4 @@ Code adapted from [https://learnopengl.com](https://learnopengl.com).
 
 ### Contributors
 [Maria Despoina Siampou](https://github.com/msiampou) &
-[Nikos Galanis](https://github.com/AriannaK97)
+[Anna Aikaterini Kavvada](https://github.com/AriannaK97)
