@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/msiampou/Desktop/5th Semester/Graphics/mini-solar-system/src/3.model_loading/1.model_loading/model_loading.cpp" "/home/msiampou/Desktop/5th Semester/Graphics/mini-solar-system/build/CMakeFiles/3.model_loading__1.model_loading.dir/src/3.model_loading/1.model_loading/model_loading.cpp.o"
+  "/home/msiampou/Desktop/5th Semester/Graphics/mini-solar-system/src/1.model_loading/solar_system/model_loading.cpp" "/home/msiampou/Desktop/5th Semester/Graphics/mini-solar-system/build/CMakeFiles/1.model_loading__solar_system.dir/src/1.model_loading/solar_system/model_loading.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

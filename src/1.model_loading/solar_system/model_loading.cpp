@@ -72,8 +72,8 @@ int main() {
 	glEnable(GL_DEPTH_TEST);
 
 	//build and compile shaders
-	Shader ourShader("1.model_loading.vs", "1.model_loading.fs");
-  	Shader lampShader("2.2.lamp.vs", "2.2.lamp.fs");
+	Shader ourShader("shader.vs", "shader.fs");
+  	Shader lampShader("lamp.vs", "lamp.fs");
 
 	//load models
 	Model sun(FileSystem::getPath("resources/objects/sun/planet.obj"));

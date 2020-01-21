@@ -55,11 +55,11 @@ else()
 endif(WIN32)
 
 set(CHAPTERS
-    3.model_loading
+    1.model_loading
 )
 
-set(3.model_loading
-    1.model_loading
+set(1.model_loading
+    solar_system
 )
 
 configure_file(configuration/root_directory.h.in configuration/root_directory.h)
