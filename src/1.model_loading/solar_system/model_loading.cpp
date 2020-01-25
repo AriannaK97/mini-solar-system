@@ -24,7 +24,7 @@ const unsigned int SCR_HEIGHT = 800;
 const double PI = 3.141592653589793238463;
 
 //camera
-Camera camera(glm::vec3(0.0f, 00.0f, 0.0f));
+Camera camera(glm::vec3(0.0f, 0.0f, 0.0f));
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -37,7 +37,7 @@ float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 
 //lighting
-glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
+glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
 
 int main() {
 
@@ -98,7 +98,7 @@ int main() {
 		glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		
-		GLfloat angle, radius, x, y, xm, ym;
+		GLfloat angle, radius, x, z, ym, zm;
 		
 		//enable main shader
 		ourShader.use();
@@ -146,14 +146,14 @@ int main() {
 			angle = 0.006f * i  * speed;
 			radius = 90.0f * scale;
 			x = radius * sin(PI * 2 * angle / 360);
-			y = radius * cos(PI * 2 * angle / 360);
+			z = radius * cos(PI * 2 * angle / 360);
 			angle = 0.006f * i;
 		}
-		earth_model = glm::translate(earth_model, glm::vec3(x, y, 0.0f)); 
+		earth_model = glm::translate(earth_model, glm::vec3(x, 0.0, z)); 
 		earth_model = glm::scale(earth_model, glm::vec3(3.0f * scale));	
 		if (movement) {
 			//earth moves around itself
-			earth_model = glm::rotate(earth_model, angle, glm::vec3(0.0f, 0.0f, 1.0f));
+			earth_model = glm::rotate(earth_model, angle, glm::vec3(0.0f, 1.0f, 0.0f));
 		}
 		ourShader.setMat4("model", earth_model);
 		earth.Draw(ourShader);
@@ -162,12 +162,14 @@ int main() {
 		glm::mat4 moon_model = glm::mat4(1.0f);	
 		if (movement) {
 			//moon moves around earth
-			angle = 0.050f * i * speed;
-			radius = radius / 8;
-			xm = x + radius * sin(PI * 2 * angle / 360);
-			ym = y + radius * cos(PI * 2 * angle / 360);
+			angle = 0.080f * i * speed;
+			radius = radius / 7;
+			ym = radius * sin(PI * 2 * angle / 360);
+			zm = radius * cos(PI * 2 * angle / 360);
 		}
-		moon_model = glm::translate(moon_model, glm::vec3(xm, ym, 0.0f));
+		moon_model = glm::translate(moon_model, glm::vec3(0.0, ym, zm));
+		moon_model = glm::translate(moon_model, glm::vec3(x, 0.0, z));
+		ourShader.setMat4("view", view);
 		moon_model = glm::scale(moon_model, glm::vec3(1.0f * scale));
 		angle = 0.006f * i;
 		ourShader.setMat4("model", moon_model);
@@ -195,6 +197,10 @@ void processInput(GLFWwindow *window) {
 		camera.ProcessKeyboard(LEFT, deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		camera.ProcessKeyboard(RIGHT, deltaTime);
+	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+		camera.ProcessKeyboard(UP, deltaTime);
+	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+		camera.ProcessKeyboard(DOWN, deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
 		movement = false;
 	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS)
